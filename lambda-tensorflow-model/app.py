@@ -86,10 +86,15 @@ def stringInput(character, end_objective, timed_objective):
 
 # Lambda handler code
 def lambda_handler(event, context):
-    print(event)
-    character = event['character']
-    main_obj = event['obj']
-    timed_obj = event['timed']
+    try:
+        character = event['character']
+        main_obj = event['obj']
+        timed_obj = event['timed']
+    except KeyError:
+        data = json.loads(event['body'])
+        character = data['character']
+        main_obj = data['obj']
+        timed_obj = data['timed']
 
     prediction = model.predict(stringInput(character, main_obj, timed_obj))[0].tolist()
 
