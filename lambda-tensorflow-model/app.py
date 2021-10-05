@@ -99,14 +99,18 @@ def lambda_handler(event, context):
     prediction = model.predict(stringInput(character, main_obj, timed_obj))[0].tolist()
 
     return {
-		'isBase64Encoded': False,
+        'isBase64Encoded': False,
         "statusCode": 200,
         "body": json.dumps(
             {
                 "predicted_label": prediction
             }
         ),
-		"headers": {
-			"Content-Type": "application/json"
-			}
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Headers": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token",
+            "Access-Control-Allow-Methods": "OPTIONS,POST",
+            "Access-Control-Allow-Origin": "ENTER_YOUR_OWN",
+            "X-Requested-With": "*"
+        }
     }
