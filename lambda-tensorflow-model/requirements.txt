@@ -1,5 +1,5 @@
 # List all python libraries for the lambda
-tensorflow==2.6.0
+tensorflow==2.6.1
 numpy==1.19.2
 boto3==1.18.38
 
